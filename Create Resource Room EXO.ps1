@@ -1,7 +1,7 @@
 
 # Connect to the on-premise Exchange Server
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Confirm:$false
-$ExchangeServer = "EXCSRV004.falkadm.se"
+$ExchangeServer = "Enter the name of your on-premise exchange server"
 $Session = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri http://$ExchangeServer/powershell -Authentication Kerberos -Credential (Get-Credential)
 Import-PSSession $Session -DisableNameChecking -AllowClobber -ErrorAction Stop
 
@@ -11,11 +11,11 @@ $GroupDisplayName = Read-Host -Prompt "Enter the display name of the security gr
 $GroupEmailAddress = Read-Host -Prompt "Enter the email address of the security group"
 
 # Define the room details
-$OnPremiseOrganizationalUnit = "OU=Users,OU=Resources,OU=Data,DC=falkadm,DC=se"
+$OnPremiseOrganizationalUnit = "Enter AD path for storing"
 $RoomName = Read-Host -Prompt "Enter name for room"
-$RoomEmailAddress = Read-Host -Prompt "Enter email address for room" # e.g. awesometest@falkenberg.se
+$RoomEmailAddress = Read-Host -Prompt "Enter email address for room" # e.g. awesometest@contoso.se
 $RoomAlias = Read-Host -Prompt "Enter Alias for room" # Can't contain nordic letters or spaces
-$RemoteRoutingAddress = "$RoomAlias@falkenbergskommun.mail.onmicrosoft.com" 
+$RemoteRoutingAddress = "$RoomAlias@contoso.mail.onmicrosoft.com" 
 
 # Create the room
 $RemoteMailboxProperties = @{
@@ -37,7 +37,7 @@ $GroupProperties = @{
     DisplayName = $GroupDisplayName
     GroupCategory = 'Security'
     GroupScope = 'Universal'
-    Path = "OU=Generella,OU=Groups,OU=Resources,OU=Data,DC=falkadm,DC=se"
+    Path = "Enter AD path for storing"
     SamAccountName = $GroupName
 }
 
