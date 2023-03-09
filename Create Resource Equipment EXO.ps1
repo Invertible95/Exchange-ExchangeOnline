@@ -1,3 +1,11 @@
+## EXO = Exchange Online
+## ADUC = Active Directory - Users and Computers
+# This script will create an equipment resource on-prem and automatically sync it to EXO using AAD-Sync
+# This is useful if your company is using an hybrib enviorment
+# It will also create an ADUC group which you can use to assign booking access later in EXO
+# The script also works fine with Active Roles
+# Feedback is welcome and encouraged
+
 
 # Connect to the on-premise Exchange Server
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Confirm:$false
@@ -6,6 +14,7 @@ $Session = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri ht
 Import-PSSession $Session -DisableNameChecking -AllowClobber -ErrorAction Stop
 
 # Define AD-Group details
+$ADPath = Read-Host -Prompt "Enter AD path for storing"
 $GroupName = Read-Host -Prompt "Enter the name of the security group starting with Equipment_"
 $GroupDisplayName = Read-Host -Prompt "Enter the display name of the security group"
 $GroupEmailAddress = Read-Host -Prompt "Enter the email address of the security group"
@@ -37,7 +46,7 @@ $GroupProperties = @{
     DisplayName = $GroupDisplayName
     GroupCategory = 'Security'
     GroupScope = 'Universal'
-    Path = "Enter AD path for storing"
+    Path = $ADPath
     SamAccountName = $GroupName
 }
 
@@ -48,4 +57,4 @@ Set-ADGroup $GroupName -Add  @{'proxyAddresses'="SMTP:$groupEmailAddress"}
 Remove-PSSession $Session
 Write-Host "Removed Exchange Session"
 
-# Run AD-sync on Azure synk server after script is completed for faster synk
+# Run AD-sync on Azure sync server after script is completed for faster synk
