@@ -1,12 +1,12 @@
+## EXO = Exchange Online
+# This script will create a new distribution group on you on-prem server and make it available in EXO automatically
 
 
-$Name = Read-Host -Prompt "Enter name for dist-list, start with @"
+$Name = Read-Host -Prompt "Enter name for distribution group, start with @"
 $Type = "Distribution"
-$ManagedBy = Read-Host -Prompt "Enter name manager"
+$ManagedBy = Read-Host -Prompt "Enter username for manager"
 $PrimarySmtpAddress = Read-Host -Prompt "Enter primary address, e.g Awesometest@contoso.com"
 $DistGroup = $Name
-    
-# If a group with this name already exists the script will stop. If the script stops, please doublecheck your AD for any unexpected error group.
  
  # Exchange connect
  $ExchangeServer = "Enter name of your exchange server"
@@ -15,7 +15,7 @@ $DistGroup = $Name
  Import-PSSession $ExchangeSession -DisableNameChecking -AllowClobber -ErrorAction Stop
  Write-Host "Imported Exchange Session"
 
-
+# If a group with this name already exists the script will stop. If the script stops, please doublecheck your AD for any unexpected error group
  try {
     $NewDistGroup = @{
         Name = $Name
@@ -30,7 +30,7 @@ finally {
 New-DistributionGroup @NewDistGroup -ErrorAction stop | fl Name, email
 Write-Host "Group created"
 
-# Only if your organization is using Active Roles, if you're using regular ADUC, scip this.
+# Only if your organization is using Active Roles, if you're using regular ADUC, scip this
 # Modifies ARS QAD Attribute to allow managers to add and remove members
 Set-QADObject $DistGroup -ObjectAttributes @{edsaManagerCanUpdateMembershipList = $true}
 
