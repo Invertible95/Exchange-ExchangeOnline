@@ -1,7 +1,7 @@
 
 
 # Connect to Exchange on-premises
-$ExchangeServer = "EXCSRV004.falkadm.se"
+$ExchangeServer = "Enter name of your exchange server"
 $Session = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri http://$ExchangeServer/powershell -Authentication Kerberos -Credential (Get-Credential)
 Import-PSSession $Session -DisableNameChecking -AllowClobber -ErrorAction Stop
 
@@ -9,8 +9,8 @@ Import-PSSession $Session -DisableNameChecking -AllowClobber -ErrorAction Stop
 $SharedMailboxName = Read-Host "Enter the name of the shared mailbox"
 $SharedMailboxAlias = Read-Host "Enter the alias of the shared mailbox" # Can not contain spaces or Nordic letters
 $SharedMailboxUPN = Read-Host "Enter the mailadress of the shared mailbox"
-$SharedMailboxRemoteRoutingAddress = "$SharedMailboxAlias@falkenbergskommun.mail.onmicrosoft.com"
-$SharedMailboxOrganizationalUnit = "OU=Users,OU=Resources,OU=Data,DC=falkadm,DC=se"
+$SharedMailboxRemoteRoutingAddress = "$SharedMailboxAlias@contoso.mail.onmicrosoft.com"
+$SharedMailboxOrganizationalUnit = "Enter AD path for storing"
 
 $SharedMailbox = @{
     Name = $SharedMailboxName
