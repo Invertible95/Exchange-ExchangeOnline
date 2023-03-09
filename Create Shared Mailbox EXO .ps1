@@ -1,4 +1,9 @@
-
+## EXO = Exchange Online
+## ADUC = Active Directory - Users and Computers
+# This script will create a shared mailbox on-prem and automatically sync it to EXO using AAD-Sync
+# This is useful if your company is using an hybrid enviorment
+# The script also works fine with Active Roles
+# Feedback is welcome and encouraged
 
 # Connect to Exchange on-premises
 $ExchangeServer = "Enter name of your exchange server"
@@ -25,5 +30,5 @@ $SharedMailbox = @{
 # Create the shared mailbox on-premises
 New-RemoteMailbox @SharedMailbox | fl Name, UserPrincipalName, RemoteRoutingAddress
 
-# Disconnect from Exchange on-premises
+# Clean up session - Disconnect from Exchange on-prem
 Remove-PSSession $Session
