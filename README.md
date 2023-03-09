@@ -9,6 +9,6 @@ The function is; usually when you for example create a shared mailbox on-prem, y
 With the script added here named Create Shared Mailbox EXO, will create a remote mailbox and tag it as shared aswell as automatically synk it to Exchange Online.
 In each script there should be clear instructions for each step.
 
-## Any feedback is welcome and I hope you get some use out of this.
-## I will try to keep the scripts up to date in accordance to changes with Microsoft and upload more.
-## You are more than welcome to contact me at theinvertible@gmail.com
+Any feedback is welcome and I hope you get some use out of this.
+I will try to keep the scripts up to date in accordance to changes with Microsoft and upload more.
+You are more than welcome to contact me at theinvertible@gmail.com if there is anything you think might be needing of improvement.
