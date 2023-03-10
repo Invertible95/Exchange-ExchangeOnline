@@ -32,3 +32,8 @@ New-RemoteMailbox @SharedMailbox | fl Name, UserPrincipalName, RemoteRoutingAddr
 
 # Clean up session - Disconnect from Exchange on-prem
 Remove-PSSession $Session
+
+
+##Disclaimer##
+# Please test scripts found online in a test setting before taking it to production
+# For any questions you might have, feel free to contact me
