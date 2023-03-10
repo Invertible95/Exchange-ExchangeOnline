@@ -58,3 +58,7 @@ Remove-PSSession $Session
 Write-Host "Removed Exchange Session"
 
 # Run AD-sync on Azure sync server after script is completed for faster synk
+
+##Disclaimer##
+# Please test scripts found online in a test setting before taking it to production
+# For any questions you might have, feel free to contact me
