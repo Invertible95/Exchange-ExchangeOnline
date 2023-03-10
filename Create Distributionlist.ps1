@@ -39,4 +39,7 @@ Remove-PSSession $ExchangeSession -Confirm:$false
 Write-Host "Removed Exchange session"
 
 
+##Disclaimer##
+# Please test scripts found online in a test setting before taking it to production
+# For any questions you might have, feel free to contact me
 
