@@ -62,3 +62,23 @@ Write-Host "Removed Exchange Session"
 ##Disclaimer##
 # Please test scripts found online in a test setting before taking it to production
 # For any questions you might have, feel free to contact me
+
+# Another way of doing variables is down below, you put this at the top of your script.
+# It's basicaly the same thing but less text, if you need the help message you type !?
+
+#[CmdletBinding()]
+#param (
+#    [Parameter(Mandatory=$true, HelpMessage="Enter the name of the security group starting with Room")]
+#    [string]$ADGroupName,
+#    [Parameter(Mandatory=$true, HelpMessage="Enter the display name of the security group")]
+#    [string]$ADGroupDisplayName,
+#    [Parameter(Mandatory=$true, HelpMessage="Enter the email address of the security group")]
+#    [string]$ADGroupEmailAddress,
+#    [Parameter(Mandatory=$true, HelpMessage="Enter name for room")]
+#    [string]$RoomName,
+#    [Parameter(Mandatory=$true, HelpMessage="Enter email address for room, e.g. awesometest@falkenberg.se")]
+#    [string]$RoomEmailAddress,
+#    [Parameter(Mandatory=$true, HelpMessage="Enter Alias for room, can't contain nodric letters or spaces")]
+#    [string]$RoomAlias
+#)
+#$RemoteRoutingAddress = "$RoomAlias@falkenbergskommun.mail.onmicrosoft.com"
