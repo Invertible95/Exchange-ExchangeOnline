@@ -11,4 +11,4 @@ In each script there should be clear instructions for each step.
 
 Any feedback is welcome and I hope you get some use out of this.
 I will try to keep the scripts up to date in accordance to changes with Microsoft and upload more.
-You are more than welcome to contact me at theinvertible@gmail.com if there is anything you think might be needing of improvement.
+You are more than welcome to contact me at theinvertible@gmail.com or with pull request if there is anything you think might be needing of improvement.
