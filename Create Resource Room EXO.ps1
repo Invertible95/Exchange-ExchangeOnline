@@ -27,12 +27,12 @@ $RemoteRoutingAddress = "$RoomAlias@contoso.mail.onmicrosoft.com"
 
 # Create the room
 $RemoteMailboxProperties = @{
-    Name = $RoomName
-    DisplayName = $RoomName
-    Alias = $RoomAlias
-    UserPrincipalName = $RoomEmailAddress
-    RemoteRoutingAddress = $RemoteRoutingAddress
-    Room = $true
+    Name                         = $RoomName
+    DisplayName                  = $RoomName
+    Alias                        = $RoomAlias
+    UserPrincipalName            = $RoomEmailAddress
+    RemoteRoutingAddress         = $RemoteRoutingAddress
+    Room                         = $true
     OnPremisesOrganizationalUnit = $OnPremiseOrganizationalUnit
 }
 
@@ -41,16 +41,16 @@ Set-RemoteMailbox $GroupEmailAddress -EmailAddresses $RoomEmailAddress -EmailAdd
 
 # Create AD-Group (Mail-Enabled for access rights)
 $GroupProperties = @{
-    Name = $GroupName
-    DisplayName = $GroupDisplayName
-    GroupCategory = 'Security'
-    GroupScope = 'Universal'
-    Path = $ADPath
+    Name           = $GroupName
+    DisplayName    = $GroupDisplayName
+    GroupCategory  = 'Security'
+    GroupScope     = 'Universal'
+    Path           = $ADPath
     SamAccountName = $GroupName
 }
 
 New-ADGroup @GroupProperties -PassThru
-Set-ADGroup $GroupName -Add  @{'proxyAddresses'="SMTP:$groupEmailAddress"}
+Set-ADGroup $GroupName -Add  @{'proxyAddresses' = "SMTP:$groupEmailAddress" }
 
 # Clean up the session
 Remove-PSSession $Session
@@ -65,6 +65,7 @@ Write-Host "Removed Exchange Session"
 
 # Another way of doing variables is down below, you put this at the top of your script.
 # It's basicaly the same thing but less text, if you need the help message you type !?
+# Below method is easier to understand for those a a bit more familiar with PS, above is easier for those who aren't.
 
 #[CmdletBinding()]
 #param (
