@@ -12,3 +12,7 @@ In each script there should be clear instructions for each step.
 Any feedback is welcome and I hope you get some use out of this.
 I will try to keep the scripts up to date in accordance to changes with Microsoft and upload more.
 You are more than welcome to contact me at theinvertible@gmail.com or with pull request if there is anything you think might be needing of improvement.
+
+##Disclaimer##
+# Please test scripts found online in a test setting before taking it to production
+# Read scripts carefully before you run, if you don't understand them ask a college or send me a message
