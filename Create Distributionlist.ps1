@@ -8,12 +8,16 @@ $ManagedBy = Read-Host -Prompt "Enter username for manager"
 $PrimarySmtpAddress = Read-Host -Prompt "Enter primary address, e.g Awesometest@contoso.com"
 $DistGroup = $Name
  
- # Exchange connect
+function ConnectEXO {
+    # Exchange connect
  $ExchangeServer = "Enter name of your exchange server"
  $Credentials = (Get-Credential)
  $ExchangeSession = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri http://$ExchangeServer/PowerShell/ -Authentication Kerberos -Credential $Credentials    
  Import-PSSession $ExchangeSession -DisableNameChecking -AllowClobber -ErrorAction Stop
  Write-Host "Imported Exchange Session"
+    
+}
+ConnectEXO
 
 # If a group with this name already exists the script will stop. If the script stops, please doublecheck your AD for any unexpected error group
  try {
