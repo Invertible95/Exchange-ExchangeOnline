@@ -17,7 +17,7 @@ function ConnectEXO {
     Write-Host "Imported Exchange Session"
     
 }
-ConnectEXO
+
 
 function CreateDistGroup {
     # If a group with this name already exists the script will stop. If the script stops, please doublecheck your AD for any unexpected error group
@@ -37,9 +37,17 @@ function CreateDistGroup {
 
     # Only if your organization is using Active Roles, if you're using regular ADUC, scip this
     # Modifies ARS QAD Attribute to allow managers to add and remove members
-    Set-QADObject $DistGroup -ObjectAttributes @{edsaManagerCanUpdateMembershipList = $true}
+    Set-QADObject $DistGroup -ObjectAttributes @{edsaManagerCanUpdateMembershipList = $true }
 }
-CreateDistGroup
+
+try {
+    ConnectEXO
+    CreateDistGroup
+}
+catch {
+    throw $_
+}
+
 
 # Clean up
 Remove-PSSession $ExchangeSession -Confirm:$false
