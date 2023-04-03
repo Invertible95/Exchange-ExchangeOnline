@@ -29,16 +29,19 @@ function CreateDistGroup {
             PrimarySmtpAddress = $PrimarySmtpAddress
         }
     }
+    catch {
+        throw $_
+    }
     finally {
         Write-Host 'Distribution group processing...'
     }
     New-DistributionGroup @NewDistGroup -ErrorAction stop | fl Name, email
     Write-Host "Group created"
-
+}
     # Only if your organization is using Active Roles, if you're using regular ADUC, scip this
     # Modifies ARS QAD Attribute to allow managers to add and remove members
     Set-QADObject $DistGroup -ObjectAttributes @{edsaManagerCanUpdateMembershipList = $true }
-}
+
 
 try {
     ConnectEXO
