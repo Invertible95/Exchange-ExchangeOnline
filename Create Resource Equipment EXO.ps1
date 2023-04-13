@@ -39,6 +39,7 @@ $RemoteMailboxProperties = @{
 
 New-RemoteMailbox @RemoteMailboxProperties | fl Name, WhenCreated, UserPrincipalName -ErrorAction Stop
 Set-RemoteMailbox $GroupEmailAddress -EmailAddresses $EquipmentEmailAddress -EmailAddressPolicyEnabled:$false
+Set-CalendarProcessing -Identity $EquipmentName -RemoveCanceledMeetings $true
 
 # Create AD-Group (Mail-Enabled for access rights)
 $GroupProperties = @{
