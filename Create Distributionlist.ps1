@@ -44,15 +44,6 @@ CreateDistGroup
 Set-QADObject $DistGroup -ObjectAttributes @{edsaManagerCanUpdateMembershipList = $true }
 
 
-try {
-    ConnectEXO
-    CreateDistGroup
-}
-catch {
-    throw $_
-}
-
-
 # Clean up
 Remove-PSSession $ExchangeSession -Confirm:$false
 Write-Host "Removed Exchange session"
