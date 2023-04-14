@@ -28,31 +28,35 @@ $RemoteRoutingAddress = "$EquipmentAlias@contoso.mail.onmicrosoft.com"
 
 # Create the Equipment
 $RemoteMailboxProperties = @{
-    Name = $EquipmentName
-    DisplayName = $EquipmentName
-    Alias = $EquipmentAlias
-    UserPrincipalName = $EquipmentEmailAddress
-    RemoteRoutingAddress = $RemoteRoutingAddress
-    Equipment = $true
+    Name                         = $EquipmentName
+    DisplayName                  = $EquipmentName
+    Alias                        = $EquipmentAlias
+    UserPrincipalName            = $EquipmentEmailAddress
+    RemoteRoutingAddress         = $RemoteRoutingAddress
+    Equipment                    = $true
     OnPremisesOrganizationalUnit = $OnPremiseOrganizationalUnit
 }
-
 New-RemoteMailbox @RemoteMailboxProperties | fl Name, WhenCreated, UserPrincipalName -ErrorAction Stop
-Set-RemoteMailbox $GroupEmailAddress -EmailAddresses $EquipmentEmailAddress -EmailAddressPolicyEnabled:$false
-Set-CalendarProcessing -Identity $EquipmentName -RemoveCanceledMeetings $true
+
+function CalendarParameters {
+    Set-RemoteMailbox $GroupEmailAddress -EmailAddresses $RoomEmailAddress -EmailAddressPolicyEnabled:$false
+    Set-CalendarProcessing -Identity $RoomName -RemoveCanceledMeetings $true
+    Set-CalendarProcessing -Identity $RoomName -AddOrganizerToSubject:$true
+}
+CalendarParameters
 
 # Create AD-Group (Mail-Enabled for access rights)
 $GroupProperties = @{
-    Name = $GroupName
-    DisplayName = $GroupDisplayName
-    GroupCategory = 'Security'
-    GroupScope = 'Universal'
-    Path = $ADPath
+    Name           = $GroupName
+    DisplayName    = $GroupDisplayName
+    GroupCategory  = 'Security'
+    GroupScope     = 'Universal'
+    Path           = $ADPath
     SamAccountName = $GroupName
 }
 
 New-ADGroup @GroupProperties -PassThru
-Set-ADGroup $GroupName -Add  @{'proxyAddresses'="SMTP:$groupEmailAddress"}
+Set-ADGroup $GroupName -Add  @{'proxyAddresses' = "SMTP:$groupEmailAddress" }
 
 # Clean up the session
 Remove-PSSession $Session

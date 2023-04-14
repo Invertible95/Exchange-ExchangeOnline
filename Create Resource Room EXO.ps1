@@ -35,10 +35,15 @@ $RemoteMailboxProperties = @{
     Room                         = $true
     OnPremisesOrganizationalUnit = $OnPremiseOrganizationalUnit
 }
-
 New-RemoteMailbox @RemoteMailboxProperties | fl Name, WhenCreated, UserPrincipalName -ErrorAction Stop
-Set-RemoteMailbox $GroupEmailAddress -EmailAddresses $RoomEmailAddress -EmailAddressPolicyEnabled:$false
-Set-CalendarProcessing -Identity $RoomName -RemoveCanceledMeetings $true
+
+function CalendarParameters {
+    Set-RemoteMailbox $GroupEmailAddress -EmailAddresses $RoomEmailAddress -EmailAddressPolicyEnabled:$false
+    Set-CalendarProcessing -Identity $RoomName -RemoveCanceledMeetings $true
+    Set-CalendarProcessing -Identity $RoomName -AddOrganizerToSubject:$true
+}
+CalendarParameters
+
 
 # Create AD-Group (Mail-Enabled for access rights)
 $GroupProperties = @{
