@@ -9,7 +9,7 @@
 
 # Connect to the on-premise Exchange Server
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Confirm:$false
-$ExchangeServer = "Enter the name of your on-premise exchange server"
+$ExchangeServer = Read-Host -Prompt "Enter name of exchange server"
 $Session = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri http://$ExchangeServer/powershell -Authentication Kerberos -Credential (Get-Credential)
 Import-PSSession $Session -DisableNameChecking -AllowClobber -ErrorAction Stop
 

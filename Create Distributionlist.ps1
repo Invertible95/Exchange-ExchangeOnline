@@ -10,7 +10,7 @@ $DistGroup = $Name
  
 function ConnectEXO {
     # Exchange connect
-    $ExchangeServer = Read-Host -Prompt "Enter name of your exchange server"
+    $ExchangeServer = Read-Host -Prompt "Enter name of your exchange server(URL)"
     $Credentials = (Get-Credential)
     $ExchangeSession = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri http://$ExchangeServer/PowerShell/ -Authentication Kerberos -Credential $Credentials    
     Import-PSSession $ExchangeSession -DisableNameChecking -AllowClobber -ErrorAction Stop
