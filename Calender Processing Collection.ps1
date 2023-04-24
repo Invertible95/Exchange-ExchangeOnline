@@ -14,3 +14,5 @@ Set-CalendarProcessing -Identity "Resource UPN" -RequestInPolicy $true/$false
 # To make calendar show who booked a timeslot and not only busy/free
 Set-CalendarProcessing -Identity "Resource Name" -AddOrganizerToSubject:$true
 
+# To make calendar remove meetings canceled
+Set-CalendarProcessing -Identity $EquipmentName -RemoveCanceledMeetings $true
