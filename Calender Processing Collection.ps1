@@ -2,7 +2,7 @@
 ##Set & Get CalenderProcessing collection
 
 # For seeing policies and processing use below and see switch-parameter >>> ## | fl* for all | fl *policy*, to specify 
-Get-CalenderProcessing - Identity "Resource Name" | fl *
+Get-CalenderProcessing -Identity "Resource Name" | fl *
 
 # "First alternative, These users can submit a request for owner approval if the resource is available."
 Set-CalendarProcessing -Identity "Resource UPN" -AllRequestInPolicy $true/$false

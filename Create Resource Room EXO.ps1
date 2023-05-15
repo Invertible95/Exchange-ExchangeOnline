@@ -39,8 +39,7 @@ New-RemoteMailbox @RemoteMailboxProperties | fl Name, WhenCreated, UserPrincipal
 
 function CalendarParameters {
     Set-RemoteMailbox $GroupEmailAddress -EmailAddresses $RoomEmailAddress -EmailAddressPolicyEnabled:$false
-    Set-CalendarProcessing -Identity $RoomName -RemoveCanceledMeetings:$true
-    Set-CalendarProcessing -Identity $RoomName -AddOrganizerToSubject:$true
+    Set-CalendarProcessing -Identity $RoomName -RemoveCanceledMeetings:$true -DeleteSubject:$false -AddOrganizerToSubject:$true
 }
 CalendarParameters
 
