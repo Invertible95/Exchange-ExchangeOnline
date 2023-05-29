@@ -36,6 +36,8 @@ $RemoteMailboxProperties = @{
     OnPremisesOrganizationalUnit = $OnPremiseOrganizationalUnit
 }
 New-RemoteMailbox @RemoteMailboxProperties | fl Name, WhenCreated, UserPrincipalName -ErrorAction Stop
+# If you want to check permissions on newly created or already existing run below
+# Get-MailBoxFolderPermission -Identity "UPN:\Calendar"
 
 function CalendarParameters {
     Set-RemoteMailbox $GroupEmailAddress -EmailAddresses $RoomEmailAddress -EmailAddressPolicyEnabled:$false

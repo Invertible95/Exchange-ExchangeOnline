@@ -29,6 +29,8 @@ $SharedMailbox = @{
 
 # Create the shared mailbox on-premises
 New-RemoteMailbox @SharedMailbox | fl Name, UserPrincipalName, RemoteRoutingAddress
+# If you want to check permissions on newly created or already existing run below
+# Get-MailBoxFolderPermission -Identity "UPN"
 
 # Clean up session - Disconnect from Exchange on-prem
 Remove-PSSession $Session
