@@ -2,9 +2,9 @@
 ##DRAFT##
 
 
-$Resource = "miljon@falkenberg.se"
+$Resource = "Test-Room"
 #Users
-$Users = "Room_Stadshus"
+$Users = "Access Group"
 
 
 $CalProp = @{
@@ -18,7 +18,7 @@ $CalProp = @{
     BookInPolicy = $Users
 
     AddAdditionalResponse = $true
-    AdditionalResponse = "Endast avsedd för stadshuset"
+    AdditionalResponse = "Test message"
 
 }
 
