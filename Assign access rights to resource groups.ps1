@@ -1,10 +1,12 @@
 #Assign access rights to resource groups
 ##DRAFT##
 
+#Following the change Microsoft made to the Exchange administration GUI in august 2023
+#This script allows you to assign rights to resource groups without having to first give yourself access to the resource
+#All you need is Exchange Administrator role and connect to exchange online using Connect-ExchangeOnline
 
-$Resource = "Test-Room"
-#Users
-$Users = "Access Group"
+$Resource = Read-Host "Enter name of room or equipment"
+$SecurityGroup = Read-Host "Enter name of AD security group"
 
 
 $CalProp = @{
@@ -15,10 +17,10 @@ $CalProp = @{
     AllRequestOutOfPolicy = $false
     ResourceDelegates = $null
 
-    BookInPolicy = $Users
+    BookInPolicy = $SecurityGroup
 
     AddAdditionalResponse = $true
-    AdditionalResponse = "Test message"
+    AdditionalResponse = "You do not have correct Permissions to book this resource, please contact IT-Service"
 
 }
 
