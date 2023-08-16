@@ -1,14 +1,28 @@
-#Assign access rights to resource groups
-##DRAFT##
+# Assign access rights to resource groups
+###IN PROGRESS###
 
-#Following the change Microsoft made to the Exchange administration GUI in august 2023
-#This script allows you to assign rights to resource groups without having to first give yourself access to the resource
-#All you need is Exchange Administrator role and connect to exchange online using Connect-ExchangeOnline
+# Following the change Microsoft made to the Exchange administration GUI in august 2023
+# This script allows you to assign rights to resource groups without having to first give yourself access to the resource
+# All you need is Exchange Administrator role and connect to exchange online using Connect-ExchangeOnline
 
+# To first check if there already is a group assigned run below function and then type Check-AlreadyAssignedGroup in your console
+# If a group is already assigned (Mail-enabled security group), you can add the person to the correct AD-group
+function Check-AlreadyAssignedGroup {
+    $Mailbox = Read-Host "Enter name of resource"
+    $CalendarFolder = $Mailbox
+    $CalendarFolder += ':\'
+    $CalendarFolder += [string](Get-mailboxfolderstatistics $Mailbox -folderscope calendar).Name
+    Get-MailboxFolderPermission -Identity $CalendarFolder
+}
+
+
+
+
+# Variables
 $Resource = Read-Host "Enter name of room or equipment"
 $SecurityGroup = Read-Host "Enter name of AD security group"
 
-
+# Settings
 $CalProp = @{
     AutomateProcessing    = 'AutoAccept'
 
@@ -26,5 +40,5 @@ $CalProp = @{
 
 }
 
-
+# Set access
 Set-CalendarProcessing -Identity $Resource @CalProp
