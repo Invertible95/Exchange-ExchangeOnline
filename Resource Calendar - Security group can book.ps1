@@ -7,20 +7,19 @@
 
 # To first check if there already is a group assigned run below function and then type Check-AlreadyAssignedGroup in your console
 # If a group is already assigned (Mail-enabled security group), you can add the person to the correct AD-group
+
+# Variables
+$Resource = Read-Host "Enter name of room or equipment"
+$SecurityGroup = Read-Host "Enter name of AD security group"
+
 function Check-AlreadyAssignedGroup {
-    $Mailbox = Read-Host "Enter name of resource"
+    $Mailbox = $Resource
     $CalendarFolder = $Mailbox
     $CalendarFolder += ':\'
     $CalendarFolder += [string](Get-mailboxfolderstatistics $Mailbox -folderscope calendar).Name
     Get-MailboxFolderPermission -Identity $CalendarFolder
 }
-
-
-
-
-# Variables
-$Resource = Read-Host "Enter name of room or equipment"
-$SecurityGroup = Read-Host "Enter name of AD security group"
+Check-AlreadyAssignedGroup
 
 # Settings
 $CalProp = @{
