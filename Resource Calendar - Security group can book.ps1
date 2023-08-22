@@ -1,5 +1,4 @@
 # Assign access rights to resource groups
-###IN PROGRESS###
 
 # Following the change Microsoft made to the Exchange administration GUI in august 2023
 # This script allows you to assign rights to resource groups without having to first give yourself access to the resource
@@ -20,6 +19,13 @@ function Check-AlreadyAssignedGroup {
     Get-MailboxFolderPermission -Identity $CalendarFolder
 }
 Check-AlreadyAssignedGroup
+
+#if ($null -ne $CalendarFolder) {
+#   break
+#}
+#else {
+#    continue
+#}
 
 # Settings
 $CalProp = @{
