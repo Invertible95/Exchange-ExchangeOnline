@@ -18,7 +18,6 @@ function Check-AlreadyAssignedGroup {
     $CalendarFolder += [string](Get-mailboxfolderstatistics $Mailbox -folderscope calendar).Name
     Get-MailboxFolderPermission -Identity $CalendarFolder
 }
-Check-AlreadyAssignedGroup
 
 #if ($null -ne $CalendarFolder) {
 #   break
