@@ -46,3 +46,5 @@ $CalProp = @{
 
 # Set access
 Set-CalendarProcessing -Identity $Resource @CalProp
+
+Check-AlreadyAssignedGroup | fl
