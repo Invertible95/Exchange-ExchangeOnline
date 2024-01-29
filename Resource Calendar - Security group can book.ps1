@@ -8,8 +8,8 @@
 # If a group is already assigned (Mail-enabled security group), you can add the person to the correct AD-group
 
 # Variables
-$Resource = Read-Host "Enter name of room or equipment"
 $SecurityGroup = Read-Host "Enter name of AD security group"
+$Resource = Read-Host "Enter name of room or equipment"
 
 function Check-AlreadyAssignedGroup {
     $Mailbox = $Resource
